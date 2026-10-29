@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ellsford Estimating</title>
+<meta name="description" content="Quantity takeoffs for US contractors and estimating firms. Flooring, roofing and siding, measured by civil engineers and delivered in 48 hours.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap">
+<style>
+/* Layout: dark moss masthead, ivory paper body, caramel used only as a fine accent line. Tight, quiet, one idea per section. */
+:root{
+  --moss:#322C25; --moss-2:#3D362E; --line-d:#4C443A;
+  --ivory:#F3ECE0; --paper:#FAF6EF; --rule:#DED3C2;
+  --caramel:#B28558; --caramel-ink:#8A6440;
+  --ink:#322C25; --soft:#6A6054; --mute:#968B7C; --on-dark:#E6DCCB; --on-dark-2:#B5A893;
+  --serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1080px; color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 15px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--caramel);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(18px,4vw,36px)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(2.6rem,5.2vw,4rem)}
+h2{font-size:clamp(1.9rem,3.4vw,2.6rem)}
+h3{font-size:1.35rem;font-weight:600;line-height:1.2;letter-spacing:0}
+em{font-style:italic}
+p{margin:0}
+.label{font:600 .7rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--caramel-ink)}
+section{padding-block:clamp(56px,7vw,84px)}
+.head{display:grid;gap:12px;margin-bottom:clamp(28px,4vw,40px);max-width:640px}
+.head p{color:var(--soft)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 .88rem var(--sans);padding:13px 22px;border-radius:2px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s;cursor:pointer;letter-spacing:.01em}
+.btn.gold{background:var(--caramel);color:#1f1a15}
+.btn.gold:hover{background:#c2946a}
+.btn.dark{background:var(--moss);color:var(--ivory)}
+.btn.dark:hover{background:var(--moss-2)}
+.btn.line{border-color:var(--line-d);color:var(--on-dark)}
+.btn.line:hover{border-color:var(--caramel);color:var(--ivory)}
+.btn.line-dark{background:var(--moss);border-color:var(--moss);color:var(--ivory)}
+.btn.line-dark:hover{background:var(--caramel);border-color:var(--caramel);color:#1f1a15}
+
+/* masthead */
+.mast{background:var(--moss);color:var(--on-dark)}
+.top{position:sticky;top:0;z-index:20;background:var(--moss);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line-d)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.brand img{height:40px;width:auto}
+.menu{display:flex;gap:28px;font-size:.86rem}
+.menu a{color:var(--on-dark-2);text-decoration:none}
+.menu a:hover{color:var(--ivory)}
+.nav .btn{padding:10px 16px;font-size:.8rem}
+section{scroll-margin-top:68px}
+.burger{display:none;background:none;border:1px solid var(--line-d);border-radius:2px;width:40px;height:40px;color:var(--ivory);cursor:pointer;padding:0;place-items:center}
+.navr{display:flex;gap:10px;align-items:center}
+.hdrback{display:none;align-items:center;gap:8px;font:600 .8rem var(--sans);color:var(--on-dark);text-decoration:none;padding:9px 14px;border:1px solid var(--line-d);border-radius:2px;transition:border-color .2s,color .2s}
+.hdrback:hover{border-color:var(--caramel);color:var(--ivory)}
+body.sub .hdrback{display:inline-flex}
+@media(max-width:860px){body.sub .burger{display:none}}
+@media(max-width:560px){.hdrback .t2{display:none}.hdrback{padding:9px 12px}}
+@media(max-width:340px){.hdrback .t{display:none}}
+@media(max-width:860px){
+  .burger{display:grid}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--moss);border-bottom:1px solid var(--line-d);flex-direction:column;gap:0;padding:6px clamp(18px,4vw,36px) 14px}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;border-bottom:1px solid var(--line-d);font-size:1rem;color:var(--on-dark)}
+  .menu a:last-child{border-bottom:0}
+}
+
+.hero{padding-block:clamp(64px,9vw,112px) clamp(56px,7vw,88px)}
+.hgrid{display:grid;grid-template-columns:minmax(0,780px)}
+.hgrid>*{min-width:0}
+.hero .label{color:var(--caramel)}
+.hero h1{color:var(--ivory);margin-top:18px}
+.hero h1 em{color:var(--caramel)}
+.hero .lede{color:var(--on-dark-2);margin-top:20px;max-width:52ch;font-size:1.02rem}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:32px;font-size:.82rem;color:var(--on-dark-2)}
+.facts span{display:flex;align-items:center;gap:8px}
+.facts span::before{content:"";width:5px;height:5px;background:var(--caramel);transform:rotate(45deg)}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr}}
+
+.sheet{background:var(--paper);color:var(--ink);border-radius:3px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);overflow:hidden}
+.sheet-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--rule);font-size:.74rem;color:var(--mute)}
+.sheet-top b{color:var(--ink);font-weight:600}
+.pill{font:600 .62rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--caramel-ink);border:1px solid var(--caramel);padding:3px 7px;border-radius:2px}
+table.q{width:100%;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}
+table.q th{text-align:left;font-weight:600;color:var(--mute);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-bottom:1px solid var(--rule)}
+table.q td{padding:9px 18px;border-bottom:1px solid #EDE5D8}
+table.q tr:last-child td{border-bottom:0}
+table.q .n{text-align:right}
+.sheet-foot{padding:11px 18px;background:#F3ECE0;font-size:.72rem;color:var(--mute)}
+@media(max-width:480px){table.q th,table.q td{padding:8px 12px}}
+
+/* services */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:24px 22px;display:grid;gap:10px;align-content:start;transition:border-color .2s}
+.card:hover{border-color:var(--caramel)}
+.card .ico{width:38px;height:38px;border:1px solid var(--rule);border-radius:2px;display:grid;place-items:center;color:var(--caramel-ink);margin-bottom:6px}
+.card p{color:var(--soft);font-size:.9rem}
+.card .from{margin-top:6px;padding-top:12px;border-top:1px solid var(--rule);font-size:.8rem;color:var(--mute)}
+.card .from b{color:var(--ink);font-weight:600}
+.card.alt{background:var(--moss);border-color:var(--moss);color:var(--ivory)}
+.card.alt p{color:var(--on-dark-2)}
+.card.alt .ico{border-color:var(--line-d);color:var(--caramel)}
+.card.alt .from{border-color:var(--line-d);color:var(--on-dark-2)}
+.card.alt .from b{color:var(--ivory)}
+.more{margin-top:18px;font-size:.86rem;color:var(--soft)}
+@media(max-width:960px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+
+/* process */
+.process{background:var(--paper);border-block:1px solid var(--rule)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;counter-reset:s}
+.step{border-top:1px solid var(--ink);padding-top:18px;display:grid;gap:8px;align-content:start}
+.step .no{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--caramel-ink)}
+.step p{color:var(--soft);font-size:.9rem}
+.get{margin-top:clamp(32px,5vw,48px);display:grid;grid-template-columns:auto 1fr;gap:16px 48px;align-items:center;padding:22px 32px;border:1px solid var(--rule);border-radius:3px;background:var(--ivory)}
+.get .label{white-space:nowrap}
+.get ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 26px;font-size:.95rem}
+.get li{display:flex;align-items:center;gap:8px}
+.get li::before{content:"";width:5px;height:5px;background:var(--caramel);transform:rotate(45deg)}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr;gap:20px}}
+@media(max-width:760px){.get{grid-template-columns:1fr;padding:20px 22px}.get ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.plan{border:1px solid var(--rule);border-radius:3px;padding:28px 24px 24px;background:var(--paper);display:flex;flex-direction:column;gap:10px;position:relative}
+.plan.feat{background:var(--moss);border-color:var(--moss);color:var(--ivory)}
+.plan .tag{position:absolute;top:-11px;left:24px;background:var(--caramel);color:#1f1a15;font:600 .6rem var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:5px 9px}
+.amt{font-family:var(--serif);font-size:2.9rem;font-weight:500;line-height:1;margin-top:6px}
+.amt small{font-family:var(--sans);font-size:.78rem;color:var(--mute);margin-left:6px;font-weight:400}
+.amt.word{font-size:2.5rem}
+.scope{font-size:.86rem;color:var(--soft)}
+.plan ul{list-style:none;margin:8px 0 0;padding:14px 0 0;border-top:1px solid var(--rule);display:grid;gap:7px;font-size:.88rem}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"";flex:none;width:5px;height:5px;background:var(--caramel);transform:rotate(45deg);margin-top:.64em}
+.plan .btn{margin-top:auto;justify-content:center}
+.plan .spacer{flex:1;min-height:16px}
+.plan.feat .label{color:var(--caramel)}
+.plan.feat .scope,.plan.feat .amt small{color:var(--on-dark-2)}
+.plan.feat ul{border-color:var(--line-d)}
+.terms{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);border-radius:3px;background:var(--paper)}
+.terms div{padding:18px 22px;display:grid;gap:6px}
+.terms div+div{border-left:1px solid var(--rule)}
+.terms p{font-size:.98rem;color:var(--ink);line-height:1.5}
+@media(max-width:860px){.prices{grid-template-columns:1fr}.terms{grid-template-columns:1fr}.terms div+div{border-left:0;border-top:1px solid var(--rule)}}
+
+/* faq */
+.fgrid2{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,64px);align-items:start}
+.fgrid2>*{min-width:0}
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;font-family:var(--serif);font-size:1.25rem;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:14px;font:300 1.4rem var(--sans);color:var(--caramel-ink);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--soft);font-size:.92rem}
+@media(max-width:820px){.fgrid2{grid-template-columns:1fr}}
+
+
+/* services page */
+.card{text-decoration:none;color:inherit}
+.card .go{margin-left:auto;color:var(--caramel-ink);font-weight:600}
+.card.alt .go{color:var(--caramel)}
+.from{display:flex;align-items:baseline;gap:4px;flex-wrap:wrap}
+.also{margin-top:14px;display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));border:1px solid var(--rule);border-radius:3px;background:var(--paper)}
+.also>.label{padding:18px 20px;display:flex;align-items:center;border-right:1px solid var(--rule);line-height:1.5}
+.also a{padding:16px 18px;text-decoration:none;color:inherit;display:grid;gap:3px;align-content:start;transition:background .2s}
+.also a+a{border-left:1px solid var(--rule)}
+.also a:hover{background:var(--ivory)}
+.also b{font-family:var(--serif);font-size:1.12rem;font-weight:600}
+.also span{font-size:.8rem;color:var(--soft);line-height:1.45}
+.also-note{margin-top:10px;font-size:.84rem;color:var(--soft)}
+@media(max-width:960px){.also{grid-template-columns:repeat(2,minmax(0,1fr))}.also>.label{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--rule)}.also a+a{border-left:0}.also a{border-bottom:1px solid var(--rule)}.also a:nth-of-type(even){border-left:1px solid var(--rule)}.also a:last-of-type{grid-column:1/-1;border-bottom:0;border-left:0}}
+.svcpage[hidden]{display:none}
+.svchead{background:var(--moss);color:var(--on-dark)}
+.svchead .wrap{padding-block:clamp(36px,5vw,60px) clamp(36px,5vw,56px)}
+.svchead .label{color:var(--caramel)}
+.svchead h1{color:var(--ivory);margin-top:14px;font-size:clamp(2.4rem,4.6vw,3.6rem)}
+.svchead h1 em{color:var(--caramel)}
+.svchead .lede{color:var(--on-dark-2);margin-top:14px;max-width:56ch}
+.incl{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;padding-top:20px;border-top:1px solid var(--line-d);font-size:.88rem}
+.incl .label{margin-right:4px}
+.incl span:not(.label){display:flex;align-items:center;gap:8px;color:var(--ivory)}
+.incl span:not(.label)::before{content:"";width:5px;height:5px;background:var(--caramel);transform:rotate(45deg)}
+.svcbody{display:grid;grid-template-columns:210px minmax(0,1fr);gap:clamp(28px,4vw,48px);padding-block:clamp(36px,5vw,56px) clamp(56px,7vw,88px);align-items:start}
+.svcnav{position:sticky;top:92px;display:grid;border-top:1px solid var(--ink)}
+.svcnav a{padding:10px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--soft);font-size:.9rem;display:flex;gap:10px;transition:color .2s}
+.svcnav a i{font-family:var(--serif);color:var(--caramel-ink);width:20px}
+.svcnav a:hover,.svcnav a.on{color:var(--ink)}
+.svcnav a.on{font-weight:600}
+.svclist{display:grid;gap:16px}
+.svc{background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:clamp(22px,3.4vw,34px);scroll-margin-top:92px;display:grid;gap:16px}
+.svc.alt{background:var(--moss);border-color:var(--moss);color:var(--ivory)}
+.svctop{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.svctop .n{font-family:var(--serif);font-style:italic;color:var(--caramel-ink);font-size:1.1rem}
+.svc.alt .svctop .n{color:var(--caramel)}
+.svctop h2{font-size:clamp(1.7rem,2.6vw,2.1rem)}
+.svctop .price{margin-left:auto;font-size:.84rem;color:var(--mute)}
+.svctop .price b{font-family:var(--serif);font-size:1.5rem;color:var(--ink);font-weight:500}
+.svc.alt .svctop .price,.svc.alt .svctop .price b{color:var(--ivory)}
+.svc>p{color:var(--soft);font-size:1rem;max-width:60ch}
+.svc.alt>p{color:var(--on-dark-2)}
+.svcgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px 36px;padding-top:18px;border-top:1px solid var(--rule)}
+.svc.alt .svcgrid{border-color:var(--line-d)}
+.svcgrid h4{margin:0 0 10px;font:600 .64rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--caramel-ink)}
+.svc.alt .svcgrid h4{color:var(--caramel)}
+.svcgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:.9rem}
+.svcgrid li{display:flex;gap:10px}
+.svcgrid li::before{content:"";flex:none;width:5px;height:5px;background:var(--caramel);transform:rotate(45deg);margin-top:.62em}
+.buy{display:grid;font-size:.88rem}
+.buy div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule)}
+.buy div:first-child{padding-top:0}
+.svc.alt .buy div{border-color:var(--line-d)}
+.buy span:last-child{text-align:right;color:var(--soft)}
+.svc.alt .buy span:last-child{color:var(--on-dark-2)}
+.svcact{display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:900px){
+  .svcbody{grid-template-columns:1fr;gap:18px;padding-top:0}
+  .svcnav{top:68px;z-index:10;display:flex;overflow-x:auto;gap:6px;border:0;background:var(--ivory);padding:12px 0;margin-inline:calc(-1*clamp(18px,4vw,36px));padding-inline:clamp(18px,4vw,36px);scrollbar-width:none;border-bottom:1px solid var(--rule)}
+  .svcnav::-webkit-scrollbar{display:none}
+  .svcnav a{flex:none;border:1px solid var(--rule);border-radius:999px;padding:7px 14px;background:var(--paper);font-size:.84rem}
+  .svcnav a i{display:none}
+  .svcnav a.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .svc{scroll-margin-top:136px}
+}
+@media(max-width:620px){.svcgrid{grid-template-columns:1fr}.svctop .price{margin-left:0;width:100%}.svcact .btn{flex:1;justify-content:center}}
+
+
+/* illustrations */
+.art{display:block;width:100%;height:auto}
+.out{margin-top:clamp(32px,5vw,48px)}
+.out>.label{display:block;margin-bottom:14px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tile{margin:0;background:var(--ivory);border:1px solid var(--rule);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
+.tile .frame{border-bottom:1px solid var(--rule);overflow-x:auto;scrollbar-width:thin}
+.tile figcaption{padding:16px 20px 18px;display:grid;gap:4px}
+.tile figcaption b{font-family:var(--serif);font-size:1.3rem;font-weight:600}
+.tile figcaption span{font-size:.88rem;color:var(--soft)}
+.outnote{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;padding:16px 22px;border:1px solid var(--rule);border-radius:3px;background:var(--ivory);font-size:.92rem}
+.outnote span:not(.label){display:flex;align-items:center;gap:8px}
+.outnote span:not(.label)::before{content:"";width:5px;height:5px;background:var(--caramel);transform:rotate(45deg)}
+.svcfig{margin:0;border:1px solid var(--rule);border-radius:2px;overflow-x:auto;background:#FBF7F0;scrollbar-width:thin}
+.svc.alt .svcfig{border-color:var(--line-d);background:#3D362E}
+@media(max-width:760px){.tiles{grid-template-columns:1fr}}
+
+/* request page */
+.req{background:var(--moss);color:var(--on-dark);min-height:calc(100vh - 68px)}
+.req[hidden],main[hidden]{display:none}
+.req .wrap{padding-block:clamp(40px,6vw,72px) clamp(56px,7vw,88px)}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;color:var(--on-dark-2);text-decoration:none;margin-bottom:clamp(28px,4vw,44px)}
+.back:hover{color:var(--ivory)}
+.rgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,64px);align-items:start}
+.rgrid>*{min-width:0}
+.req .label{color:var(--caramel)}
+.req h1{color:var(--ivory);margin-top:16px;font-size:clamp(2.4rem,4.6vw,3.6rem)}
+.req h1 em{color:var(--caramel)}
+.req .lede{color:var(--on-dark-2);margin-top:16px;font-size:1rem;max-width:44ch}
+.how{margin-top:30px;border-top:1px solid var(--line-d)}
+.how div{display:grid;grid-template-columns:34px 1fr;gap:4px 12px;padding:16px 0;border-bottom:1px solid var(--line-d)}
+.how span{font-family:var(--serif);font-style:italic;color:var(--caramel);font-size:1.15rem;grid-row:span 2}
+.how b{color:var(--ivory);font-weight:600;font-size:.94rem}
+.how p{color:var(--on-dark-2);font-size:.88rem}
+.fine{margin-top:18px;font-size:.8rem;color:var(--on-dark-2);line-height:1.6}
+.reqform{background:var(--paper);color:var(--ink);padding:clamp(22px,3.5vw,34px);border-radius:3px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reqform .full{grid-column:1/-1}
+.reqform h2{font-size:1.7rem;grid-column:1/-1}
+label{display:grid;gap:6px;font:600 .64rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--caramel-ink);min-width:0}
+input,select,textarea{font:400 .92rem var(--sans);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:2px;padding:10px 12px;width:100%;letter-spacing:0;text-transform:none}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--caramel);box-shadow:0 0 0 3px rgba(178,133,88,.16)}
+textarea{min-height:86px;resize:vertical}
+.planpick{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;border:0;padding:0;margin:0}
+.planpick legend{font:600 .64rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--caramel-ink);margin-bottom:6px;padding:0}
+.planpick label{position:relative;display:block;border:1px solid var(--rule);background:#fff;border-radius:2px;padding:12px 12px 11px;cursor:pointer;letter-spacing:0;text-transform:none;font:600 .9rem var(--sans);color:var(--ink)}
+.planpick label small{display:block;font-weight:400;font-size:.76rem;color:var(--mute);margin-top:3px}
+.planpick input{position:absolute;opacity:0;width:1px;height:1px}
+.planpick label:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.planpick label:has(input:focus-visible){outline:2px solid var(--caramel);outline-offset:2px}
+.agree{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font:400 .86rem/1.5 var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);background:var(--ivory);padding:12px 14px;border-left:2px solid var(--caramel)}
+.agree input{width:16px;height:16px;flex:none;margin-top:2px;accent-color:var(--moss)}
+.agree[hidden]{display:none}
+.formend{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.formend small{color:var(--mute);font-size:.78rem;max-width:36ch}
+.status{grid-column:1/-1;padding:11px 13px;background:var(--ivory);border-left:2px solid var(--caramel);font-size:.88rem}
+.hp{position:absolute;left:-9999px}
+@media(max-width:900px){.rgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.reqform{grid-template-columns:1fr}.planpick{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--moss);color:var(--on-dark-2);border-top:1px solid var(--line-d);padding-top:clamp(56px,7vw,88px);font-size:.86rem;overflow:hidden}
+.ftop{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:end;padding-bottom:clamp(40px,5vw,56px);border-bottom:1px solid var(--line-d)}
+.ftop>*{min-width:0}
+.fbrand img{height:clamp(64px,8vw,88px);width:auto}
+.fbrand p{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.2;color:var(--ivory);margin-top:24px;max-width:22ch}
+.fbrand p em{color:var(--caramel)}
+.sub h3{color:var(--ivory);font-size:1.5rem}
+.sub>p{margin-top:8px;max-width:44ch}
+.subform{margin-top:18px;display:flex;border:1px solid var(--line-d);border-radius:2px;background:var(--moss-2);padding:5px}
+.subform input{flex:1;min-width:0;background:transparent;border:0;color:var(--ivory);padding:10px 12px;font-size:.95rem}
+.subform input::placeholder{color:#8F8370}
+.subform input:focus{box-shadow:none}
+.subform:focus-within{border-color:var(--caramel)}
+.subform .btn{padding:11px 18px;flex:none}
+.substatus{margin-top:10px;font-size:.82rem;color:var(--caramel)}
+.fcols{display:grid;grid-template-columns:1.7fr 1fr 1.2fr .8fr;gap:28px;padding-block:clamp(36px,5vw,48px)}
+.fsvc{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+.fsvc h4{grid-column:1/-1}
+.fcols h4{margin:0 0 14px;font:600 .66rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--caramel)}
+.fcols a,.fcols span{display:block;color:var(--on-dark-2);text-decoration:none;padding:4px 0}
+.fcols a:hover{color:var(--ivory)}
+.wordmark{font-family:var(--serif);font-weight:500;font-size:clamp(5rem,21vw,17rem);line-height:.78;letter-spacing:-.03em;color:var(--moss-2);text-align:center;user-select:none;margin-top:8px;white-space:nowrap}
+.legal{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;padding-block:18px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:.76rem;color:#9C907E}
+@media(max-width:860px){.ftop{grid-template-columns:1fr;align-items:start}.fcols{grid-template-columns:1fr 1fr}.fsvc{grid-column:1/-1}}
+@media(max-width:420px){.fcols{grid-template-columns:1fr}.fsvc{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Ellsford Estimating, back to top"><img src="logo.png" alt="Ellsford Estimating"></a>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="#svc">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="navr">
+      <a class="hdrback" href="#top"><span aria-hidden="true">&larr;</span><span class="t">Back<span class="t2"> to site</span></span><span class="sr" style="position:absolute;left:-9999px">Back to the main site</span></a>
+      <a class="btn gold" href="#start" data-src="Top menu button">Free takeoff</a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div class="mast">
+  <section class="hero">
+    <div class="wrap hgrid">
+      <div>
+        <div class="label">Ellsford Estimating</div>
+        <h1>Quantity takeoffs, <em>ready before your bid.</em></h1>
+        <p class="lede">Send us your plans. A civil engineer measures every area, edge and opening, checks the numbers, and returns a clean quantity sheet you can price from.</p>
+        <div class="ctas">
+          <a class="btn gold" href="#start" data-src="Hero button">Start with a free takeoff</a>
+          <a class="btn line" href="#process">How it works</a>
+        </div>
+        <div class="facts"><span>48-hour turnaround</span><span>Fixed price, quoted upfront</span><span>First takeoff free on monthly plans</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Services</div>
+      <h2>Measured carefully, <em>trade by trade.</em></h2>
+    </div>
+    <div class="cards">
+      <a class="card" href="#svc-flooring">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <h3>Flooring &amp; Tile</h3>
+        <p>Areas by finish, base, transitions and waste, room by room.</p>
+        <div class="from">from <b>$100</b> per trade<span class="go">Details &rarr;</span></div>
+      </a>
+      <a class="card" href="#svc-roofing">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 13 12 5l10 8M5 11v9h14v-9"/></svg></div>
+        <h3>Roofing</h3>
+        <p>Squares by pitch, plus eaves, rakes, ridges, valleys and flashing.</p>
+        <div class="from">from <b>$100</b> per trade<span class="go">Details &rarr;</span></div>
+      </a>
+      <a class="card" href="#svc-siding">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v16H4z"/><path d="M4 8h16M4 12h16M4 16h16"/></svg></div>
+        <h3>Siding</h3>
+        <p>Net wall area by material, openings deducted, trim and corners counted.</p>
+        <div class="from">from <b>$100</b> per trade<span class="go">Details &rarr;</span></div>
+      </a>
+      <a class="card alt" href="#svc-white-label">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h16v12H4z"/><path d="M9 7V5h6v2"/></svg></div>
+        <h3>White-label</h3>
+        <p>Overflow takeoffs for estimating firms, in your template, under your name.</p>
+        <div class="from"><b>Volume rates</b> on request<span class="go">Details &rarr;</span></div>
+      </a>
+    </div>
+    <div class="also"><span class="label">Also<br>available</span><a href="#svc-painting"><b>Painting</b><span>Paintable surfaces by finish, ready for labor and material pricing.</span></a><a href="#svc-masonry"><b>Masonry</b><span>Units, mortar and grout, counted wall by wall.</span></a><a href="#svc-doors-windows"><b>Doors &amp; windows</b><span>Every opening counted and checked against the schedule.</span></a><a href="#svc-concrete"><b>Concrete</b><span>Volumes for every pour, from footings to slabs.</span></a><a href="#svc-rebar"><b>Rebar</b><span>Bar lists with laps and weights, ready to order.</span></a></div>
+    <p class="also-note">Quoted per project, or included in a monthly plan. <a href="#svc">See all services &rarr;</a></p>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Process</div>
+      <h2>Plans in, <em>quantities out.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="no">01</span><h3>Send plans</h3><p>Drawings, trade, scope and your bid date.</p></div>
+      <div class="step"><span class="no">02</span><h3>Fixed quote</h3><p>Price and delivery date confirmed before we start.</p></div>
+      <div class="step"><span class="no">03</span><h3>Measure &amp; check</h3><p>An engineer runs the takeoff, then a written QC check.</p></div>
+      <div class="step"><span class="no">04</span><h3>Price your bid</h3><p>Files arrive within 48 hours of receiving your plans.</p></div>
+    </div>
+    <div class="out">
+      <span class="label">What you receive <span style="color:var(--mute);letter-spacing:.14em">· example</span></span>
+      <div class="tiles">
+        <figure class="tile"><div class="frame"><svg class="art" viewBox="0 0 560 340" role="img" aria-label="Marked-up floor plan with areas coloured by finish" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="flbg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="flbtile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="flbdot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="flbhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="flbbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="flblap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="560" height="340" fill="#FBF7F0"/><rect width="560" height="340" fill="url(#flbg)"/><rect x="40" y="40" width="224" height="240" fill="#B28558" fill-opacity=".22"/><rect x="264" y="40" width="160" height="128" fill="url(#flbdot)"/><rect x="264" y="168" width="160" height="112" fill="url(#flbtile)"/><rect x="44" y="44" width="216" height="232" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="7 4" fill="none"/><rect x="268" y="44" width="152" height="120" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="7 4" fill="none"/><rect x="40" y="40" width="384" height="240" fill="none" stroke="#322C25" stroke-width="3.5"/><path fill="none" d="M264 40V80M264 104V216M264 240V280M264 168H424" stroke="#322C25" stroke-width="2.5"/><path fill="none" d="M264 80a24 24 0 0 1 24 24M264 216a24 24 0 0 1 24 24" stroke="#6A6054" stroke-width="1" stroke-dasharray="3 3"/><path fill="none" d="M264 80H288M264 216H288" stroke="#322C25" stroke-width="1.4"/><g><rect x="52" y="149.0" width="95" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="60" y="164.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">LVT  840 SF</text></g><g><rect x="272" y="52" width="117" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="280" y="67" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CARPET  320 SF</text></g><g><rect x="272" y="180" width="102" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="280" y="195" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">TILE  280 SF</text></g><g><rect x="52" y="248" width="102" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="60" y="263" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">BASE  180 LF</text></g><rect x="448" y="44" width="12" height="12" fill="#B2855855" stroke="#6A6054" stroke-width=".8"/><text x="466" y="54" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">LVT, room 101</text><rect x="448" y="64" width="12" height="12" fill="url(#flbdot)" stroke="#6A6054" stroke-width=".8"/><text x="466" y="74" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Carpet tile, 102</text><rect x="448" y="84" width="12" height="12" fill="url(#flbtile)" stroke="#6A6054" stroke-width=".8"/><text x="466" y="94" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Porcelain tile, 103</text><path fill="none" d="M448 116h12" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="5 3"/><text x="466" y="120" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Rubber base</text><text x="448" y="152" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">2 transitions at doors</text><path fill="none" d="M40 294H424M40 289v10M424 289v10" stroke="#968B7C" stroke-width="1"/><text x="232.0" y="307" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="middle">48&#8242;-0&#8243;</text><path fill="none" d="M26 40V280M21 40h10M21 280h10" stroke="#968B7C" stroke-width="1"/><text x="20" y="160.0" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="middle" transform="rotate(-90 20 160.0)">30&#8242;-0&#8243;</text></svg></div><figcaption><b>Marked-up plans</b><span>Every area coloured and labelled, so you can check our numbers in minutes.</span></figcaption></figure>
+        <figure class="tile"><div class="frame"><svg class="art" viewBox="0 0 560 340" role="img" aria-label="Excel quantity sheet with items, quantities and units" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs></defs><rect width="560" height="340" fill="#FBF7F0"/><rect x="0" y="0" width="560" height="40" fill="#322C25"/><text x="20" y="25" font-family="Manrope,system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#F3ECE0" text-anchor="start">Example_Takeoff_Flooring.xlsx</text><rect x="448" y="11" width="92" height="18" rx="2" fill="#B28558"/><text x="494" y="24" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#1f1a15" text-anchor="middle">SUMMARY</text><rect x="20" y="54" width="520" height="20" fill="#EAE1D1"/><text x="35.0" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle"></text><text x="148.0" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">A</text><text x="281.0" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">B</text><text x="342.0" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">C</text><text x="454.0" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">D</text><rect x="20" y="74" width="520" height="30" fill="#F3ECE0"/><rect x="20" y="74" width="30" height="30" fill="#EAE1D1"/><text x="35" y="93" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">1</text><text x="60" y="93" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="700" fill="#8A6440" text-anchor="start">Item</text><text x="306" y="93" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="700" fill="#8A6440" text-anchor="end">Qty</text><text x="358" y="93" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="700" fill="#8A6440" text-anchor="end">Unit</text><text x="378" y="93" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="700" fill="#8A6440" text-anchor="start">Notes</text><rect x="20" y="104" width="520" height="30" fill="#FBF7F0"/><rect x="20" y="104" width="30" height="30" fill="#EAE1D1"/><text x="35" y="123" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">2</text><text x="60" y="123" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">LVT, plank</text><text x="306" y="123" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">840</text><text x="358" y="123" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">SF</text><text x="378" y="123" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">Room 101, net. Waste 5%</text><rect x="20" y="134" width="520" height="30" fill="#FFFFFF"/><rect x="20" y="134" width="30" height="30" fill="#EAE1D1"/><text x="35" y="153" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">3</text><text x="60" y="153" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">Carpet tile</text><text x="306" y="153" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">320</text><text x="358" y="153" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">SF</text><text x="378" y="153" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">Room 102, net. Waste 8%</text><rect x="20" y="164" width="520" height="30" fill="#FBF7F0"/><rect x="20" y="164" width="30" height="30" fill="#EAE1D1"/><text x="35" y="183" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">4</text><text x="60" y="183" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">Porcelain floor tile</text><text x="306" y="183" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">280</text><text x="358" y="183" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">SF</text><text x="378" y="183" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">Room 103, net. Waste 10%</text><rect x="20" y="194" width="520" height="30" fill="#FFFFFF"/><rect x="20" y="194" width="30" height="30" fill="#EAE1D1"/><text x="35" y="213" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">5</text><text x="60" y="213" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">Rubber base, 4″</text><text x="306" y="213" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">180</text><text x="358" y="213" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">LF</text><text x="378" y="213" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">Rooms 101-102</text><rect x="20" y="224" width="520" height="30" fill="#FBF7F0"/><rect x="20" y="224" width="30" height="30" fill="#EAE1D1"/><text x="35" y="243" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">6</text><text x="60" y="243" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">Tile base</text><text x="306" y="243" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">65</text><text x="358" y="243" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">LF</text><text x="378" y="243" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">Room 103</text><rect x="20" y="254" width="520" height="30" fill="#FFFFFF"/><rect x="20" y="254" width="30" height="30" fill="#EAE1D1"/><text x="35" y="273" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="600" fill="#968B7C" text-anchor="middle">7</text><text x="60" y="273" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="start">Transition strips</text><text x="306" y="273" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">2</text><text x="358" y="273" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="500" fill="#322C25" text-anchor="end">EA</text><text x="378" y="273" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#6A6054" text-anchor="start">At door openings</text><path fill="none" d="M20 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M50 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M246 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M316 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M368 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M540 54V284" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 54H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 74H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 104H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 134H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 164H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 194H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 224H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 254H540" stroke="#DED3C2" stroke-width="1"/><path fill="none" d="M20 284H540" stroke="#DED3C2" stroke-width="1"/><rect x="246" y="104" width="70" height="30" fill="none" stroke="#B28558" stroke-width="2"/><path fill="none" d="M0 310H560" stroke="#DED3C2"/><rect x="20" y="310" width="78" height="22" fill="#FFFFFF" stroke="#DED3C2"/><text x="59.0" y="325" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="middle">Summary</text><rect x="102" y="310" width="134" height="22" fill="#EAE1D1" stroke="#DED3C2"/><text x="169.0" y="325" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#968B7C" text-anchor="middle">Takeoff detail</text><rect x="240" y="310" width="110" height="22" fill="#EAE1D1" stroke="#DED3C2"/><text x="295.0" y="325" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#968B7C" text-anchor="middle">Assumptions</text></svg></div><figcaption><b>Excel quantity sheet</b><span>Quantities by item and unit, ready to drop straight into your bid.</span></figcaption></figure>
+      </div>
+      <p class="outnote"><span class="label">Also included</span><span>Assumptions in writing</span><span>48-hour turnaround</span><span>Two revisions</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Pricing</div>
+      <h2>Pay per job, or <em>lock in a monthly rate.</em></h2>
+      <p>Fixed prices, quoted before we start. Every takeoff includes two revisions.</p>
+    </div>
+    <div class="prices">
+      <div class="plan">
+        <span class="label">Per project</span>
+        <div class="amt">$100<small>per trade, and up</small></div>
+        <div class="scope">One-off bids, priced by the size of the drawing set.</div>
+        <ul><li>48-hour turnaround</li><li>Excel sheet + marked-up plans</li><li>Two revisions</li><li>Quoted before we start</li></ul>
+        <div class="spacer"></div>
+        <a class="btn line-dark" href="#start-project" data-src="Pricing: Per project card">Get a quote</a>
+      </div>
+      <div class="plan feat">
+        <span class="tag">First takeoff free</span>
+        <span class="label">Monthly</span>
+        <div class="amt">$1,200<small>per month</small></div>
+        <div class="scope">Up to 20 small to mid-size takeoffs a month, about $60 each.</div>
+        <ul><li>Priority turnaround</li><li>Same estimator on every job</li><li>Two revisions per takeoff</li><li>Cancel with one month notice</li></ul>
+        <div class="spacer"></div>
+        <a class="btn gold" href="#start-monthly" data-src="Pricing: Monthly card">Start with a free takeoff</a>
+      </div>
+      <div class="plan">
+        <span class="label">Custom</span>
+        <div class="amt word">Let's talk</div>
+        <div class="scope">White-label, multi-trade or large commercial work.</div>
+        <ul><li>Your template, your brand</li><li>Volume rates</li><li>Delivery set to your bid dates</li><li>Two revisions</li></ul>
+        <div class="spacer"></div>
+        <a class="btn line-dark" href="#start-custom" data-src="Pricing: Custom card">Talk to us</a>
+      </div>
+    </div>
+    <div class="terms">
+      <div><span class="label">Rush</span><p>24-hour delivery available at +30%.</p></div>
+      <div><span class="label">Payment</span><p>Wise or PayPal. Jobs under $500 paid upfront, larger jobs 50/50.</p></div>
+      <div><span class="label">Monthly billing</span><p>50% at the start of the month, 50% two weeks later.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="faq">
+  <div class="wrap fgrid2">
+    <div class="head" style="margin:0">
+      <div class="label">FAQ</div>
+      <h2>Before you <em>send plans.</em></h2>
+      <p>Anything else, ask in the form and we'll reply within one business day.</p>
+    </div>
+    <div class="faq">
+      <details><summary>How accurate are your takeoffs?</summary><p>Each takeoff is measured by a civil engineer and checked against a written QC list before delivery. Every assumption is written down, so you can see how anything unclear was handled.</p></details>
+      <details><summary>How fast will I get it back?</summary><p>48 hours for residential and small jobs. Larger projects get a delivery date set around your bid date. Rush 24-hour delivery is available when we have capacity.</p></details>
+      <details><summary>Are my drawings kept confidential?</summary><p>Yes. Plans are used only for your takeoff, never shared, and deleted on request. We sign NDAs.</p></details>
+      <details><summary>Who gets the free takeoff?</summary><p>Contractors and estimating firms starting a monthly plan. Send one live project, we deliver the full takeoff free, and if our numbers hold up your plan starts from the next job. One-off projects are quoted at our standard rate.</p></details>
+      <details><summary>How do I pay?</summary><p>Wise or PayPal. One-off jobs under $500 are paid upfront and larger jobs are split 50/50. Monthly plans are billed 50% at the start of the month and 50% two weeks later.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="svcpage" id="svcpage" hidden>
+  <div class="svchead"><div class="wrap">
+    <a class="back" href="#top">&larr; Back to the site</a>
+    <div class="label">Services</div>
+    <h1>Every trade we measure, <em>in one place.</em></h1>
+    <p class="lede">Takeoffs measured by civil engineers and checked before delivery. Buy per project, on a monthly plan, or white-label for your firm.</p>
+    <div class="incl"><span class="label">Every takeoff includes</span><span>Excel quantity sheet</span><span>Marked-up plans</span><span>Assumptions in writing</span><span>48-hour turnaround</span><span>Two revisions</span></div>
+  </div></div>
+  <div class="wrap svcbody">
+    <nav class="svcnav" aria-label="Services"><a href="#svc-flooring"><i>01</i>Flooring &amp; tile</a><a href="#svc-roofing"><i>02</i>Roofing</a><a href="#svc-siding"><i>03</i>Siding</a><a href="#svc-painting"><i>04</i>Painting</a><a href="#svc-masonry"><i>05</i>Masonry</a><a href="#svc-doors-windows"><i>06</i>Doors &amp; windows</a><a href="#svc-concrete"><i>07</i>Concrete</a><a href="#svc-rebar"><i>08</i>Rebar</a><a href="#svc-white-label"><i>09</i>White-label</a></nav>
+    <div class="svclist">
+      <article class="svc" id="svc-flooring">
+        <div class="svctop"><span class="n">01</span><h2>Flooring &amp; Tile</h2><span class="price">from <b>$100</b> per project</span></div>
+        <p>Every finish measured room by room, ready to price.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Marked-up floor plan with areas coloured by finish" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="fl2g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="fl2tile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="fl2dot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="fl2hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="fl2brick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="fl2lap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#fl2g)"/><rect x="40" y="14" width="168" height="180" fill="#B28558" fill-opacity=".22"/><rect x="208" y="14" width="120" height="96" fill="url(#fl2dot)"/><rect x="208" y="110" width="120" height="84" fill="url(#fl2tile)"/><rect x="44" y="18" width="160" height="172" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="7 4" fill="none"/><rect x="212" y="18" width="112" height="88" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="7 4" fill="none"/><rect x="40" y="14" width="288" height="180" fill="none" stroke="#322C25" stroke-width="3.5"/><path fill="none" d="M208 14V44M208 62V146M208 164V194M208 110H328" stroke="#322C25" stroke-width="2.5"/><path fill="none" d="M208 44a18 18 0 0 1 18 18M208 146a18 18 0 0 1 18 18" stroke="#6A6054" stroke-width="1" stroke-dasharray="3 3"/><path fill="none" d="M208 44H226M208 146H226" stroke="#322C25" stroke-width="1.4"/><g><rect x="52" y="93.0" width="95" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="60" y="108.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">LVT  840 SF</text></g><g><rect x="214" y="26" width="95" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="222" y="41" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CPT  320 SF</text></g><g><rect x="214" y="122" width="102" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="222" y="137" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">TILE  280 SF</text></g><g><rect x="52" y="162" width="102" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="60" y="177" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">BASE  180 LF</text></g><rect x="352" y="18" width="12" height="12" fill="#B2855855" stroke="#6A6054" stroke-width=".8"/><text x="370" y="28" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">LVT</text><rect x="352" y="38" width="12" height="12" fill="url(#fl2dot)" stroke="#6A6054" stroke-width=".8"/><text x="370" y="48" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Carpet tile</text><rect x="352" y="58" width="12" height="12" fill="url(#fl2tile)" stroke="#6A6054" stroke-width=".8"/><text x="370" y="68" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Porcelain tile</text><path fill="none" d="M352 90h12" stroke="#8A6440" stroke-width="1.6" stroke-dasharray="5 3"/><text x="370" y="94" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Rubber base</text><text x="352" y="126" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">2 transitions at doors</text><path fill="none" d="M40 208H328M40 203v10M328 203v10" stroke="#968B7C" stroke-width="1"/><text x="184.0" y="221" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="middle">48&#8242;-0&#8243;</text><path fill="none" d="M26 14V194M21 14h10M21 194h10" stroke="#968B7C" stroke-width="1"/><text x="20" y="104.0" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="middle" transform="rotate(-90 20 104.0)">30&#8242;-0&#8243;</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Floor areas by finish: LVT, tile, carpet, wood, epoxy</li><li>Wall tile areas in wet rooms</li><li>Base and trim by type, in LF</li><li>Transitions and thresholds, counted</li><li>Waste factor set per material</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $100, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Flooring &amp; tile (free takeoff)" data-trade="Flooring &amp; tile">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Flooring &amp; tile (quote)" data-trade="Flooring &amp; tile">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-roofing">
+        <div class="svctop"><span class="n">02</span><h2>Roofing</h2><span class="price">from <b>$100</b> per project</span></div>
+        <p>Roof areas by pitch and material, with every edge counted.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Roof plan with planes, ridge, hips and eaves measured" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="rfg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="rftile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="rfdot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="rfhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="rfbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="rflap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#rfg)"/><polygon points="60,30 396.0,30 312.0,114.0 144.0,114.0" fill="#B28558" fill-opacity=".26"/><polygon points="60,198.0 396.0,198.0 312.0,114.0 144.0,114.0" fill="#B28558" fill-opacity=".12"/><polygon points="60,30 144.0,114.0 60,198.0" fill="url(#rfhatch)"/><polygon points="396.0,30 312.0,114.0 396.0,198.0" fill="url(#rfhatch)"/><rect x="60" y="30" width="336.0" height="168.0" stroke="#8A6440" stroke-width="4" fill="none"/><path fill="none" d="M144.0 114.0H312.0" stroke="#322C25" stroke-width="3"/><path fill="none" d="M60 30L144.0 114.0L60 198.0M396.0 30L312.0 114.0L396.0 198.0" stroke="#6A6054" stroke-width="2"/><path fill="none" d="M228.0 186.0v-30" stroke="#322C25" stroke-width="1.4"/><path fill="none" d="M224.0 160.0l4 -6l4 6" stroke="#322C25" stroke-width="1.4"/><g><rect x="182.0" y="82.0" width="102" height="22" rx="2" fill="#322C25" stroke="#322C25"/><text x="190.0" y="97.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="start">RIDGE  30 LF</text></g><g><rect x="238.0" y="158.0" width="88" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="246.0" y="173.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">6/12 PITCH</text></g><g><rect x="64" y="204.0" width="110" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="72" y="219.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">EAVES  180 LF</text></g><g><rect x="268.0" y="40" width="138" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="276.0" y="55" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">HIPS  4 x 22.5 LF</text></g><text x="228.0" y="22" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="middle">60&#8242;-0&#8243; x 30&#8242;-0&#8243; plan</text><rect x="426.0" y="34" width="12" height="12" fill="#B2855855" stroke="#6A6054" stroke-width=".8"/><text x="444.0" y="44" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Main planes</text><rect x="426.0" y="54" width="12" height="12" fill="url(#rfhatch)" stroke="#6A6054" stroke-width=".8"/><text x="444.0" y="64" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Hip ends</text><path fill="none" d="M426.0 86h12" stroke="#8A6440" stroke-width="4"/><text x="444.0" y="90" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Eaves / drip edge</text><path fill="none" d="M426.0 106h12" stroke="#322C25" stroke-width="3"/><text x="444.0" y="110" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Ridge</text><text x="426.0" y="142" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="700" fill="#322C25" text-anchor="start">Roof area  20.1 SQ</text><text x="426.0" y="160" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="start">before waste</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Squares by roof plane and pitch</li><li>Eaves, rakes, ridges, hips and valleys, in LF</li><li>Underlayment and ice &amp; water shield</li><li>Flashing, vents and penetrations</li><li>Waste factor set per material</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $100, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Roofing (free takeoff)" data-trade="Roofing">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Roofing (quote)" data-trade="Roofing">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-siding">
+        <div class="svctop"><span class="n">03</span><h2>Siding</h2><span class="price">from <b>$100</b> per project</span></div>
+        <p>Net wall areas by material, with openings already deducted.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Front elevation with siding area and openings deducted" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="sdg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="sdtile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="sddot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="sdhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="sdbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="sdlap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#sdg)"/><polygon points="60,107.0 230.0,22 400.0,107.0 400.0,183.5 60,183.5" fill="url(#sdlap)" stroke="#322C25" stroke-width="3"/><path fill="none" d="M60 107.0V183.5M400.0 107.0V183.5" stroke="#B28558" stroke-width="6" stroke-opacity=".8"/><rect x="111.0" y="124.0" width="25.5" height="42.5" fill="#FBF7F0" stroke="#322C25" stroke-width="1.6"/><rect x="107.0" y="120.0" width="33.5" height="50.5" fill="none" stroke="#8A6440" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="323.5" y="124.0" width="25.5" height="42.5" fill="#FBF7F0" stroke="#322C25" stroke-width="1.6"/><rect x="319.5" y="120.0" width="33.5" height="50.5" fill="none" stroke="#8A6440" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="217.25" y="124.0" width="25.5" height="59.5" fill="#FBF7F0" stroke="#322C25" stroke-width="1.6"/><rect x="213.25" y="120.0" width="33.5" height="67.5" fill="none" stroke="#8A6440" stroke-width="1.2" stroke-dasharray="4 3"/><g><rect x="178.0" y="73.0" width="95" height="22" rx="2" fill="#322C25" stroke="#322C25"/><text x="186.0" y="88.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="start">NET  509 SF</text></g><g><rect x="284.0" y="191.5" width="131" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="292.0" y="206.5" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">OPENINGS  -51 SF</text></g><text x="60" y="205.5" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="start">40&#8242;-0&#8243; wide, 9&#8242; walls, 6/12 gable</text><rect x="440.0" y="34" width="12" height="12" fill="url(#sdlap)" stroke="#6A6054" stroke-width=".8"/><text x="458.0" y="44" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Lap siding (net)</text><rect x="440.0" y="54" width="12" height="12" fill="#FBF7F0" stroke="#6A6054" stroke-width=".8"/><text x="458.0" y="64" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Opening, deducted</text><path fill="none" d="M440.0 82h12" stroke="#B28558" stroke-width="5"/><text x="458.0" y="86" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Outside corners  18 LF</text><text x="440.0" y="118" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#968B7C" text-anchor="start">FRONT ELEVATION</text><text x="440.0" y="138" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Gross 560 SF</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Wall areas by elevation and material</li><li>Window and door openings deducted</li><li>Trim, corners and J-channel, in LF</li><li>Soffit and fascia</li><li>Housewrap and waste factor</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $100, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Siding (free takeoff)" data-trade="Siding">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Siding (quote)" data-trade="Siding">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-painting">
+        <div class="svctop"><span class="n">04</span><h2>Painting</h2><span class="price">from <b>$100</b> per project</span></div>
+        <p>Paintable surfaces by finish, ready for labor and material pricing.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Interior elevations with paintable areas by finish" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="ptg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="pttile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="ptdot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="pthatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="ptbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="ptlap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#ptg)"/><rect x="40" y="70" width="120" height="90" fill="#B28558" fill-opacity="0.16" stroke="#322C25" stroke-width="2"/><text x="100.0" y="176" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#968B7C" text-anchor="middle">WALL A  12&#8242;</text><rect x="160" y="70" width="180" height="90" fill="#B28558" fill-opacity="0.24" stroke="#322C25" stroke-width="2"/><text x="250.0" y="176" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#968B7C" text-anchor="middle">WALL B  18&#8242;</text><rect x="340" y="70" width="120" height="90" fill="#B28558" fill-opacity="0.16" stroke="#322C25" stroke-width="2"/><text x="400.0" y="176" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#968B7C" text-anchor="middle">WALL C  12&#8242;</text><rect x="40" y="54" width="420" height="16" fill="url(#pthatch)" stroke="#322C25" stroke-width="1.5"/><rect x="235.0" y="90" width="30" height="70" fill="#FBF7F0" stroke="#322C25" stroke-width="2"/><rect x="231.0" y="86" width="38" height="74" fill="none" stroke="#8A6440" stroke-width="1.4"/><path fill="none" d="M40 155H231.0M269.0 155H460" stroke="#8A6440" stroke-width="3"/><g><rect x="48" y="80" width="174" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="56" y="95" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">WALLS  357 SF  2 COATS</text></g><g><rect x="48" y="24" width="124" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="56" y="39" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CEILING  216 SF</text></g><g><rect x="48" y="126" width="95" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="56" y="141" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">BASE  39 LF</text></g><g><rect x="348" y="80" width="131" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="356" y="95" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">DOOR + FRAME  x1</text></g><rect x="488" y="40" width="12" height="12" fill="#B2855844" stroke="#6A6054" stroke-width=".8"/><text x="506" y="50" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Walls, eggshell</text><rect x="488" y="60" width="12" height="12" fill="url(#pthatch)" stroke="#6A6054" stroke-width=".8"/><text x="506" y="70" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Ceiling, flat</text><path fill="none" d="M488 92h12" stroke="#8A6440" stroke-width="3"/><text x="506" y="96" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Base / trim</text><text x="488" y="130" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#968B7C" text-anchor="start">ROOM 18&#8242; x 12&#8242;</text><text x="488" y="146" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#968B7C" text-anchor="start">9&#8242; ceiling</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Wall and ceiling areas by finish and coats</li><li>Doors and frames, counted by type</li><li>Trim and base, in LF</li><li>Exterior surfaces by elevation</li><li>Specialty coatings flagged</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $100, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Painting (free takeoff)" data-trade="Painting">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Painting (quote)" data-trade="Painting">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-masonry">
+        <div class="svctop"><span class="n">05</span><h2>Masonry</h2><span class="price">from <b>$150</b> per project</span></div>
+        <p>Units, mortar and grout, counted wall by wall.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Masonry wall elevation with units, lintel and bond beam" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="msg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="mstile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="msdot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="mshatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="msbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="mslap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#msg)"/><rect x="36" y="28" width="420.0" height="168.0" fill="url(#msbrick)" stroke="#322C25" stroke-width="3"/><rect x="36" y="28" width="420.0" height="9.104550000000001" fill="#B28558" fill-opacity=".45" stroke="#322C25" stroke-width="1.5"/><rect x="162.0" y="112.0" width="105.0" height="84.0" fill="#FBF7F0" stroke="#322C25" stroke-width="2"/><rect x="148.035" y="102.89545" width="133.035" height="9.104550000000001" fill="#322C25" fill-opacity=".85"/><path fill="none" d="M372.0 40V196.0" stroke="#322C25" stroke-width="2" stroke-dasharray="6 4"/><g><rect x="44" y="44" width="131" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="52" y="59" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">BOND BEAM  40 LF</text></g><g><rect x="170.0" y="76.0" width="138" height="22" rx="2" fill="#322C25" stroke="#322C25"/><text x="178.0" y="91.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="start">LINTEL L1  12&#8242;-8&#8243;</text></g><g><rect x="44" y="164.0" width="117" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="52" y="179.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CMU 8&#8243;  630 EA</text></g><g><rect x="378.0" y="164.0" width="81" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="386.0" y="179.0" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CJ  16 LF</text></g><text x="36" y="214.0" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="start">40&#8242;-0&#8243; x 16&#8242;-0&#8243; wall, opening 10&#8242; x 8&#8242;</text><rect x="482.0" y="32" width="12" height="12" fill="url(#msbrick)" stroke="#6A6054" stroke-width=".8"/><text x="500.0" y="42" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">8&#8243; CMU, net 560 SF</text><rect x="482.0" y="52" width="12" height="12" fill="#B2855877" stroke="#6A6054" stroke-width=".8"/><text x="500.0" y="62" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Bond beam</text><rect x="482.0" y="72" width="12" height="12" fill="#322C25" stroke="#6A6054" stroke-width=".8"/><text x="500.0" y="82" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Lintel</text><text x="482.0" y="114" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">Mortar  2.0 CY</text><text x="482.0" y="132" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">Grout  1.2 CY</text><text x="482.0" y="150" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="500" fill="#968B7C" text-anchor="start">cells @ 48&#8243; o.c.</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>CMU and brick by wall area and unit count</li><li>Mortar and grout volumes</li><li>Reinforcement and wall ties</li><li>Lintels and bond beams</li><li>Openings deducted</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $150, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Masonry (free takeoff)" data-trade="Masonry">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Masonry (quote)" data-trade="Masonry">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-doors-windows">
+        <div class="svctop"><span class="n">06</span><h2>Doors &amp; Windows</h2><span class="price">from <b>$100</b> per project</span></div>
+        <p>Every opening counted and checked against the schedule.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Floor plan with door and window tags and a schedule" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="dwg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#dwg)"/><rect x="36" y="30" width="330" height="170" fill="none" stroke="#322C25" stroke-width="4"/><path fill="none" d="M186 30V90M186 130V200M36 120H126" stroke="#322C25" stroke-width="3"/><path d="M186 90a40 40 0 0 1 40 40" fill="none" stroke="#6A6054" stroke-width="1"/><path fill="none" d="M186 90h40" stroke="#322C25" stroke-width="1.6"/><path d="M126 120a38 38 0 0 1 -38 38" fill="none" stroke="#6A6054" stroke-width="1"/><path d="M226 200a40 40 0 0 1 40 -40" fill="none" stroke="#6A6054" stroke-width="1"/><rect x="76" y="26" width="40" height="8" fill="#FBF7F0" stroke="#322C25" stroke-width="1.4"/><path fill="none" d="M76 30h40" stroke="#B28558" stroke-width="2"/><rect x="246" y="26" width="40" height="8" fill="#FBF7F0" stroke="#322C25" stroke-width="1.4"/><path fill="none" d="M246 30h40" stroke="#B28558" stroke-width="2"/><rect x="306" y="26" width="40" height="8" fill="#FBF7F0" stroke="#322C25" stroke-width="1.4"/><path fill="none" d="M306 30h40" stroke="#B28558" stroke-width="2"/><circle cx="208" cy="112" r="12" fill="#B28558" stroke="#B28558"/><text x="208" y="116" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#1f1a15" text-anchor="middle">D1</text><circle cx="102" cy="142" r="12" fill="#B28558" stroke="#B28558"/><text x="102" y="146" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#1f1a15" text-anchor="middle">D2</text><circle cx="250" cy="172" r="12" fill="#B28558" stroke="#B28558"/><text x="250" y="176" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#1f1a15" text-anchor="middle">D3</text><rect x="83" y="42" width="26" height="20" fill="#322C25"/><text x="96" y="56" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#F3ECE0" text-anchor="middle">W1</text><rect x="253" y="42" width="26" height="20" fill="#322C25"/><text x="266" y="56" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#F3ECE0" text-anchor="middle">W2</text><rect x="313" y="42" width="26" height="20" fill="#322C25"/><text x="326" y="56" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#F3ECE0" text-anchor="middle">W2</text><rect x="396" y="30" width="220" height="156" fill="#FFFFFF" stroke="#DED3C2"/><rect x="396" y="30" width="220" height="26" fill="#EAE1D1"/><text x="406" y="47" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#8A6440" text-anchor="start">TAG</text><text x="452" y="47" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#8A6440" text-anchor="start">SIZE</text><text x="602" y="47" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#8A6440" text-anchor="end">QTY*</text><path fill="none" d="M396 56H616" stroke="#DED3C2"/><text x="406" y="73" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="start">D1</text><text x="452" y="73" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">3′0″ x 7′0″</text><text x="602" y="73" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">4</text><path fill="none" d="M396 82H616" stroke="#DED3C2"/><text x="406" y="99" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="start">D2</text><text x="452" y="99" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">2‶8″ x 6′8″</text><text x="602" y="99" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">2</text><path fill="none" d="M396 108H616" stroke="#DED3C2"/><text x="406" y="125" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="start">D3</text><text x="452" y="125" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">6′0″ pair</text><text x="602" y="125" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">1</text><path fill="none" d="M396 134H616" stroke="#DED3C2"/><text x="406" y="151" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="start">W1</text><text x="452" y="151" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">3′0″ x 5′0″</text><text x="602" y="151" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">6</text><path fill="none" d="M396 160H616" stroke="#DED3C2"/><text x="406" y="177" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="start">W2</text><text x="452" y="177" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">4′0″ x 5′0″</text><text x="602" y="177" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">8</text><text x="396" y="204" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="500" fill="#968B7C" text-anchor="start">*whole set. Partial plan shown.</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Doors by type, size and rating</li><li>Windows by type and size</li><li>Frames and hardware sets</li><li>Plans cross-checked against schedules</li><li>Discrepancies flagged in writing</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $100, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Doors &amp; windows (free takeoff)" data-trade="Doors &amp; windows">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Doors &amp; windows (quote)" data-trade="Doors &amp; windows">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-concrete">
+        <div class="svctop"><span class="n">07</span><h2>Concrete</h2><span class="price">from <b>$150</b> per project</span></div>
+        <p>Volumes for every pour, from footings to slabs.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Foundation plan with footings and slab volumes" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="ccg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern><pattern id="cctile" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#B28558" fill-opacity=".14"/><path d="M14 0H0V14" fill="none" stroke="#B28558" stroke-opacity=".55" stroke-width="1"/></pattern><pattern id="ccdot" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#6A6054" fill-opacity=".10"/><circle cx="4" cy="4" r="1.1" fill="#6A6054" fill-opacity=".55"/></pattern><pattern id="cchatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#B28558" fill-opacity=".10"/><path d="M0 0V8" stroke="#B28558" stroke-opacity=".6" stroke-width="1.2"/></pattern><pattern id="ccbrick" width="28" height="14" patternUnits="userSpaceOnUse"><rect width="28" height="14" fill="#B28558" fill-opacity=".12"/><path d="M0 0H28M0 7H28M7 0V7M21 7V14" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern><pattern id="cclap" width="10" height="7" patternUnits="userSpaceOnUse"><rect width="10" height="7" fill="#B28558" fill-opacity=".10"/><path d="M0 6.5H10" stroke="#B28558" stroke-opacity=".6" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#ccg)"/><rect x="50" y="30" width="400" height="170" fill="#B28558" fill-opacity=".42"/><rect x="68" y="48" width="364" height="134" fill="url(#cchatch)" stroke="#322C25" stroke-width="1.5"/><rect x="50" y="30" width="400" height="170" fill="none" stroke="#322C25" stroke-width="2.5"/><rect x="59" y="39" width="382" height="152" fill="none" stroke="#322C25" stroke-width="1" stroke-dasharray="5 4"/><rect x="176" y="101" width="28" height="28" fill="#322C25" fill-opacity=".85"/><rect x="296" y="101" width="28" height="28" fill="#322C25" fill-opacity=".85"/><g><rect x="80" y="60" width="124" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="88" y="75" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">SOG 4″  48.6 CY</text></g><g><rect x="80" y="150" width="203" height="22" rx="2" fill="#FBF7F0" stroke="#DED3C2"/><text x="88" y="165" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">CONT. FTG 24″x12″  21.1 CY</text></g><g><rect x="250" y="135" width="95" height="22" rx="2" fill="#322C25" stroke="#322C25"/><text x="258" y="150" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="start">F1 PADS  x2</text></g><rect x="478" y="34" width="12" height="12" fill="#B2855877" stroke="#6A6054" stroke-width=".8"/><text x="496" y="44" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Continuous footing</text><rect x="478" y="54" width="12" height="12" fill="url(#cchatch)" stroke="#6A6054" stroke-width=".8"/><text x="496" y="64" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Slab on grade</text><rect x="478" y="74" width="12" height="12" fill="#322C25" stroke="#6A6054" stroke-width=".8"/><text x="496" y="84" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">Pad footings</text><text x="478" y="116" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">Formwork  612 SF</text><text x="478" y="134" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#322C25" text-anchor="start">Vapor barrier  4,330 SF</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Footings and foundation walls, in CY</li><li>Slabs on grade and elevated, SF and CY</li><li>Columns, beams and piers</li><li>Formwork contact area</li><li>Vapor barrier and mesh</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $150, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Concrete (free takeoff)" data-trade="Concrete">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Concrete (quote)" data-trade="Concrete">Get a quote</a></div>
+      </article>
+      <article class="svc" id="svc-rebar">
+        <div class="svctop"><span class="n">08</span><h2>Rebar</h2><span class="price">from <b>$150</b> per project</span></div>
+        <p>Bar lists with laps and weights, ready to order.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Footing section with rebar sizes, spacing, laps and weights" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><pattern id="rbg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#EFE7DA" stroke-width="1"/></pattern></defs><rect width="640" height="230" fill="#FBF7F0"/><rect width="640" height="230" fill="url(#rbg)"/><rect x="50" y="120" width="200" height="70" fill="#EAE1D1" stroke="#322C25" stroke-width="2.5"/><rect x="120" y="40" width="60" height="80" fill="#EAE1D1" stroke="#322C25" stroke-width="2.5"/><circle cx="72" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="98" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="124" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="150" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="176" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="202" cy="172" r="5" fill="#B28558" stroke="#322C25"/><circle cx="228" cy="172" r="5" fill="#B28558" stroke="#322C25"/><path d="M134 46V168h-24M166 46V168h24" fill="none" stroke="#8A6440" stroke-width="3.5"/><path fill="none" d="M64 184H236" stroke="#8A6440" stroke-width="2"/><text x="230" y="211" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#968B7C" text-anchor="middle">SECTION A</text><path fill="none" d="M330 80H530" stroke="#8A6440" stroke-width="4"/><path fill="none" d="M450 90H630" stroke="#B28558" stroke-width="4"/><path d="M450 104V110H530V104" fill="none" stroke="#322C25" stroke-width="1.2"/><text x="490" y="126" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="middle">LAP 30″</text><g><rect x="190" y="50" width="146" height="22" rx="2" fill="#B28558" stroke="#B28558"/><text x="198" y="65" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f1a15" text-anchor="start">#5 VERT @ 12″ O.C.</text></g><g><rect x="70" y="196" width="102" height="22" rx="2" fill="#322C25" stroke="#322C25"/><text x="78" y="211" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="start">(7) #4 CONT.</text></g><rect x="330" y="156" width="300" height="66" fill="#FFFFFF" stroke="#DED3C2"/><text x="344" y="178" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">#4 bars</text><text x="616" y="178" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">1,842 lb</text><text x="344" y="198" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#6A6054" text-anchor="start">#5 bars</text><text x="616" y="198" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">2,316 lb</text><path fill="none" d="M330 206H630" stroke="#DED3C2"/><text x="344" y="218" font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#8A6440" text-anchor="start">TOTAL</text><text x="616" y="218" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#322C25" text-anchor="end">2.08 tons</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>What we measure</h4><ul><li>Bars by size and element</li><li>Laps, hooks and bends included</li><li>Weights in lb and tons</li><li>Dowels, ties and chairs</li><li>Wire mesh by area</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Per project</span><span>from $150, quoted upfront</span></div>
+            <div><span>Monthly plan</span><span>$1,200 for up to 20 takeoffs</span></div>
+            <div><span>White-label</span><span>for firms, under your name</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-monthly" data-src="Services page: Rebar (free takeoff)" data-trade="Rebar">Start with a free takeoff</a><a class="btn line-dark" href="#start-project" data-src="Services page: Rebar (quote)" data-trade="Rebar">Get a quote</a></div>
+      </article>
+      <article class="svc alt" id="svc-white-label">
+        <div class="svctop"><span class="n">09</span><h2>White-label</h2><span class="price"><b>Volume</b> rates</span></div>
+        <p>Overflow takeoffs for estimating firms, in your template and under your name. Your clients never hear from us.</p>
+        <figure class="svcfig"><svg class="art" viewBox="0 0 640 230" role="img" aria-label="Your template going in and coming back filled, under your brand" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs></defs><rect width="640" height="230" fill="#3D362E"/><rect x="40" y="25" width="230" height="180" fill="#FBF7F0" stroke="#4C443A" stroke-width="1"/><rect x="54" y="39" width="72" height="22" fill="#EAE1D1"/><text x="90" y="54" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="700" fill="#968B7C" text-anchor="middle">TEMPLATE</text><text x="256" y="54" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="600" fill="#968B7C" text-anchor="end">TAKEOFF</text><path fill="none" d="M54 81H256" stroke="#DED3C2"/><rect x="54" y="87" width="90" height="7" fill="#EAE1D1"/><rect x="210" y="87" width="46" height="7" fill="#EAE1D1" fill-opacity="1"/><path fill="none" d="M54 103H256" stroke="#DED3C2"/><rect x="54" y="109" width="82" height="7" fill="#EAE1D1"/><rect x="210" y="109" width="46" height="7" fill="#EAE1D1" fill-opacity="1"/><path fill="none" d="M54 125H256" stroke="#DED3C2"/><rect x="54" y="131" width="74" height="7" fill="#EAE1D1"/><rect x="210" y="131" width="46" height="7" fill="#EAE1D1" fill-opacity="1"/><path fill="none" d="M54 147H256" stroke="#DED3C2"/><rect x="54" y="153" width="66" height="7" fill="#EAE1D1"/><rect x="210" y="153" width="46" height="7" fill="#EAE1D1" fill-opacity="1"/><path fill="none" d="M54 169H256" stroke="#DED3C2"/><rect x="54" y="175" width="58" height="7" fill="#EAE1D1"/><rect x="210" y="175" width="46" height="7" fill="#EAE1D1" fill-opacity="1"/><path fill="none" d="M290 115h50" stroke="#B28558" stroke-width="2"/><path d="M334 109l8 6l-8 6" fill="none" stroke="#B28558" stroke-width="2"/><rect x="370" y="25" width="230" height="180" fill="#FBF7F0" stroke="#B28558" stroke-width="2"/><rect x="384" y="39" width="72" height="22" fill="#B28558"/><text x="420" y="54" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="700" fill="#1f1a15" text-anchor="middle">YOUR LOGO</text><text x="586" y="54" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="600" fill="#968B7C" text-anchor="end">TAKEOFF</text><path fill="none" d="M384 81H586" stroke="#DED3C2"/><rect x="384" y="87" width="90" height="7" fill="#EAE1D1"/><rect x="540" y="87" width="46" height="7" fill="#B28558" fill-opacity="0.5"/><path fill="none" d="M384 103H586" stroke="#DED3C2"/><rect x="384" y="109" width="82" height="7" fill="#EAE1D1"/><rect x="540" y="109" width="46" height="7" fill="#B28558" fill-opacity="0.5"/><path fill="none" d="M384 125H586" stroke="#DED3C2"/><rect x="384" y="131" width="74" height="7" fill="#EAE1D1"/><rect x="540" y="131" width="46" height="7" fill="#B28558" fill-opacity="0.5"/><path fill="none" d="M384 147H586" stroke="#DED3C2"/><rect x="384" y="153" width="66" height="7" fill="#EAE1D1"/><rect x="540" y="153" width="46" height="7" fill="#B28558" fill-opacity="0.5"/><path fill="none" d="M384 169H586" stroke="#DED3C2"/><rect x="384" y="175" width="58" height="7" fill="#EAE1D1"/><rect x="540" y="175" width="46" height="7" fill="#B28558" fill-opacity="0.5"/><text x="155" y="222" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="500" fill="#B5A893" text-anchor="middle">Your template, sent to us</text><text x="485" y="222" font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#F3ECE0" text-anchor="middle">Back in 48 hours, under your name</text></svg></figure>
+        <div class="svcgrid">
+          <div><h4>How it works</h4><ul><li>Your template, your branding</li><li>No contact with your clients</li><li>NDA signed before the first job</li><li>Same estimators on your account</li><li>Any of the trades above</li></ul></div>
+          <div><h4>How you can buy it</h4><div class="buy">
+            <div><span>Overflow per job</span><span>from $60 per trade</span></div>
+            <div><span>Monthly block</span><span>20 or 40 takeoffs, fixed fee</span></div>
+            <div><span>Free test</span><span>one job in your template</span></div>
+            <div><span>Turnaround</span><span>48 hours, 2 revisions</span></div>
+          </div></div>
+        </div>
+        <div class="svcact"><a class="btn gold" href="#start-custom" data-src="Services page: White-label" data-trade="White-label / several">Talk to us</a></div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<div class="req" id="request" hidden>
+  <div class="wrap">
+    <a class="back" href="#top">&larr; Back to the site</a>
+    <div class="rgrid">
+      <div>
+        <div class="label">Start a project</div>
+        <h1>Tell us about <em>the job.</em></h1>
+        <p class="lede">We reply within one business day with a fixed price and delivery date.</p>
+        <div class="how">
+          <div><span>01</span><b>Send one live project</b><p>One trade, a real bid you are pricing now.</p></div>
+          <div><span>02</span><b>We take it off, free</b><p>Full takeoff and marked-up plans in 48 hours.</p></div>
+          <div><span>03</span><b>Your monthly plan starts</b><p>If our numbers hold up, we carry on from your next job.</p></div>
+        </div>
+        <p class="fine">The free takeoff is for contractors and estimating firms starting a monthly plan. One-off projects are quoted at our standard rate. Your drawings stay confidential.</p>
+      </div>
+      <form class="reqform" name="takeoff-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="reqform" novalidate>
+        <input type="hidden" name="form-name" value="takeoff-request">
+        <input type="hidden" name="source" id="src-req" value="">
+        <p class="hp" aria-hidden="true"><label>Do not fill this out <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <fieldset class="planpick">
+          <legend>What are you looking for?</legend>
+          <label><input type="radio" name="plan" value="Monthly plan, free first takeoff" checked>Monthly plan<small>First takeoff free</small></label>
+          <label><input type="radio" name="plan" value="One project">One project<small>Fixed quote</small></label>
+          <label><input type="radio" name="plan" value="Custom or white-label">Custom<small>White-label or volume</small></label>
+        </fieldset>
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required placeholder="Jane Carter"></label>
+        <label for="f-company">Company<input id="f-company" name="company" autocomplete="organization" required placeholder="Carter Flooring LLC"></label>
+        <label for="f-email">Work email<input id="f-email" name="email" type="email" autocomplete="email" required placeholder="jane@carterflooring.com"></label>
+        <label for="f-trade">Trade<select id="f-trade" name="trade"><option>Flooring &amp; tile</option><option>Roofing</option><option>Siding</option><option>Painting</option><option>Masonry</option><option>Doors &amp; windows</option><option>Concrete</option><option>Rebar</option><option>White-label / several</option><option>Other</option></select></label>
+        <label for="f-bid">Bid due date<input id="f-bid" name="bid_due" type="date"></label>
+        <label for="f-plans">Link to plans<input id="f-plans" name="plans_link" type="url" placeholder="Drive, Dropbox or WeTransfer"></label>
+        <label class="full" for="f-notes">Scope notes<textarea id="f-notes" name="notes" placeholder="Sheets, areas, anything to include or exclude."></textarea></label>
+        <label class="agree" id="agree"><input type="checkbox" name="trial_agreement" value="yes" id="f-agree">I'm requesting the free takeoff as a trial for a monthly plan, and plan to continue if the numbers hold up.</label>
+        <div class="formend">
+          <small>Or email plans to estimating@ellsford.com.</small>
+          <button class="btn dark" type="submit" id="f-submit">Send for a free takeoff</button>
+        </div>
+        <p class="status" id="status" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fbrand">
+        <img src="logo.png" alt="Ellsford Estimating">
+        <p>Quantity takeoffs for <em>contractors</em> and <em>estimating firms.</em></p>
+      </div>
+      <div class="sub">
+        <h3>Interested in working together?</h3>
+        <p>Leave your email and we'll send our rates, a sample takeoff and how we work. No newsletters.</p>
+        <form class="subform" name="work-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="subform" novalidate>
+          <input type="hidden" name="form-name" value="work-inquiry">
+          <input type="hidden" name="source" id="src-sub" value="">
+          <input class="hp" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" name="email" id="s-email" placeholder="you@company.com" aria-label="Work email" autocomplete="email" required>
+          <button class="btn gold" type="submit">Send</button>
+        </form>
+        <p class="substatus" id="substatus" hidden></p>
+      </div>
+    </div>
+    <div class="fcols">
+      <div class="fsvc"><h4>Services</h4><div><a href="#svc-flooring">Flooring &amp; tile</a><a href="#svc-roofing">Roofing</a><a href="#svc-siding">Siding</a><a href="#svc-painting">Painting</a></div><div><a href="#svc-masonry">Masonry</a><a href="#svc-doors-windows">Doors &amp; windows</a><a href="#svc-concrete">Concrete</a><a href="#svc-rebar">Rebar</a><a href="#svc-white-label">White-label</a></div></div>
+      <div><h4>Company</h4><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#start" data-src="Footer link">Free takeoff</a></div>
+      <div><h4>Contact</h4><a href="mailto:estimating@ellsford.com">estimating@ellsford.com</a><span>Replies within one business day</span></div>
+      <div><h4>Payment</h4><span>Wise</span><span>PayPal</span><span>Invoiced in USD</span></div>
+    </div>
+    <div class="wordmark" aria-hidden="true">Ellsford</div>
+  </div>
+  <div class="wrap legal"><span>© 2026 Ellsford Estimating. All rights reserved.</span><span>Quantities are prepared for bidding; pricing and bid decisions remain with the client.</span></div>
+</footer>
+
+<script>
+(function(){
+  var main=document.getElementById('top'), req=document.getElementById('request'), svc=document.getElementById('svcpage');
+  var pendingTrade=null, navLinks=[].slice.call(document.querySelectorAll('.svcnav a'));
+  var form=document.getElementById('reqform'), st=document.getElementById('status');
+  var agree=document.getElementById('agree'), agreeBox=document.getElementById('f-agree'), btn=document.getElementById('f-submit');
+  var preview=!/netlify\.app$|ellsford/.test(location.hostname);
+  var planMap={monthly:0,project:1,custom:2};
+  function syncPlan(){
+    var r=form.querySelector('input[name=plan]:checked'), monthly=r&&r.value.indexOf('Monthly')===0;
+    agree.hidden=!monthly; agreeBox.required=monthly;
+    btn.textContent=monthly?'Send for a free takeoff':'Request a quote';
+  }
+  function show(v){main.hidden=v!=='main'; req.hidden=v!=='req'; svc.hidden=v!=='svc'; document.body.classList.toggle('sub',v!=='main');}
+  function route(){
+    var h=location.hash;
+    if(h.indexOf('#start')===0){
+      show('req');
+      var k=h.split('-')[1]; if(k in planMap){form.querySelectorAll('input[name=plan]')[planMap[k]].checked=true;}
+      if(pendingTrade){var sel=document.getElementById('f-trade'); sel.value=pendingTrade; pendingTrade=null;}
+      syncPlan(); window.scrollTo({top:0,behavior:'instant'});
+    } else if(h.indexOf('#svc')===0){
+      show('svc');
+      var t=h.length>4?document.getElementById(h.slice(1)):null;
+      if(t){requestAnimationFrame(function(){t.scrollIntoView({behavior:'instant',block:'start'});});} else window.scrollTo({top:0,behavior:'instant'});
+    } else {
+      show('main');
+      if(h && h!=='#top'){var el=document.querySelector(h); if(el) requestAnimationFrame(function(){el.scrollIntoView({behavior:'smooth',block:'start'});});}
+      else window.scrollTo({top:0,behavior:'instant'});
+    }
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id;navLinks.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on&&a.parentNode.scrollWidth>a.parentNode.clientWidth){a.parentNode.scrollTo({left:a.offsetLeft-40,behavior:'smooth'});}});}});},{rootMargin:'-35% 0px -60% 0px'});
+    [].forEach.call(document.querySelectorAll('.svc'),function(el){io.observe(el);});
+  }
+  var srcReq=document.getElementById('src-req'), srcSub=document.getElementById('src-sub');
+  srcReq.value='Direct link';
+  document.addEventListener('click',function(e){var a=e.target.closest('a[data-src]'); if(a){srcReq.value=a.getAttribute('data-src'); pendingTrade=a.getAttribute('data-trade'); if(a.getAttribute('href')===location.hash) route();}});
+  var menu=document.getElementById('menu'), burger=document.getElementById('burger');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);});
+  menu.addEventListener('click',function(e){if(e.target.closest('a')){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  window.addEventListener('hashchange',route); route();
+  form.addEventListener('change',function(e){if(e.target.name==='plan')syncPlan();});
+  form.addEventListener('submit',function(e){
+    var name=document.getElementById('f-name').value.trim(), email=document.getElementById('f-email').value.trim(), co=document.getElementById('f-company').value.trim();
+    var msg='';
+    if(!name||!co||!/^\S+@\S+\.\S+$/.test(email)) msg='Add your name, company and a valid work email so we can reply.';
+    else if(agreeBox.required&&!agreeBox.checked) msg='The free takeoff is a trial for a monthly plan. Tick the box to continue, or choose One project for a quote.';
+    if(msg){e.preventDefault();st.textContent=msg;st.hidden=false;return;}
+    if(preview){e.preventDefault();st.textContent='Preview only. Once the site is live, this form sends straight to our inbox.';st.hidden=false;}
+  });
+  var sf=document.getElementById('subform'), ss=document.getElementById('substatus');
+  sf.addEventListener('submit',function(e){
+    srcSub.value='Footer: Interested in working together ('+(!req.hidden?'request page':!svc.hidden?'services page':'main page')+')';
+    var v=document.getElementById('s-email').value.trim();
+    if(!/^\S+@\S+\.\S+$/.test(v)){e.preventDefault();ss.textContent='Enter a valid email.';ss.hidden=false;return;}
+    if(preview){e.preventDefault();ss.textContent='Preview only. Live, this goes straight to our inbox.';ss.hidden=false;}
+  });
+})();
+</script>
+</body>
+</html>
