@@ -644,10 +644,9 @@ footer{background:var(--moss);color:var(--on-dark-2);border-top:1px solid var(--
         </div>
         <p class="fine">The free takeoff is for contractors and estimating firms starting a monthly plan. One-off projects are quoted at our standard rate. Your drawings stay confidential.</p>
       </div>
-      <form class="reqform" name="takeoff-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="reqform" novalidate>
+      <form class="reqform" name="takeoff-request" method="POST" action="/thanks.html" data-netlify="true" id="reqform" novalidate>
         <input type="hidden" name="form-name" value="takeoff-request">
         <input type="hidden" name="source" id="src-req" value="">
-        <p class="hp" aria-hidden="true"><label>Do not fill this out <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <fieldset class="planpick">
           <legend>What are you looking for?</legend>
           <label><input type="radio" name="plan" value="Monthly plan, free first takeoff" checked>Monthly plan<small>First takeoff free</small></label>
@@ -682,10 +681,9 @@ footer{background:var(--moss);color:var(--on-dark-2);border-top:1px solid var(--
       <div class="sub">
         <h3>Interested in working together?</h3>
         <p>Leave your email and we'll send our rates, a sample takeoff and how we work. No newsletters.</p>
-        <form class="subform" name="work-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="subform" novalidate>
+        <form class="subform" name="work-inquiry" method="POST" action="/thanks.html" data-netlify="true" id="subform" novalidate>
           <input type="hidden" name="form-name" value="work-inquiry">
           <input type="hidden" name="source" id="src-sub" value="">
-          <input class="hp" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="email" name="email" id="s-email" placeholder="you@company.com" aria-label="Work email" autocomplete="email" required>
           <button class="btn gold" type="submit">Send</button>
         </form>
